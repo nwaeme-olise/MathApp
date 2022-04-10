@@ -20,19 +20,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun addNumbers() {
-        val input1 = findViewById<EditText>(R.id.input_1).text
-        val input2 = findViewById<EditText>(R.id.input_2).text
-        val first_number = input1.toString().toInt()
-        val second_number = input2.toString().toInt()
-        if (input1.isEmpty() && input2.isEmpty()) {
+        val input1 = findViewById<EditText>(R.id.input_1).text.toString()
+        val input2 = findViewById<EditText>(R.id.input_2).text.toString()
+
+        if (input1==""){
             Toast.makeText(this, "You didn't enter a number", Toast.LENGTH_SHORT).show()
             return
-        } else {
-            val answer = first_number + second_number
+        }
+        if (input2=="") {
+            Toast.makeText(this, "You didn't enter a number", Toast.LENGTH_SHORT).show()
+            return
+        }
+            val firstNumber = input1.toInt()
+            val secondNumber = input2.toInt()
+            val answer = firstNumber + secondNumber
             intent = Intent(this, DisplayAnswerActivity::class.java).apply {
                 putExtra(EXTRA_ANSWER, answer)
             }
             startActivity(intent)
         }
-    }
+
 }
